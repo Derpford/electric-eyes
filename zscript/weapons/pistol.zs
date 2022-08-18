@@ -9,8 +9,9 @@ class EEPistol : EEWeapon {
         Weapon.AmmoGive1 0;
         Weapon.AmmoType2 "Clip";
         Weapon.AmmoUse2 0;
-        Weapon.AmmoGive2 20;
+        Weapon.AmmoGive2 10;
         EEWeapon.AimFreeze 18;
+        EEWeapon.MagSize 10;
     }
 
     override Vector2 Kick() {

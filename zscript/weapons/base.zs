@@ -27,6 +27,9 @@ class EEWeapon : Weapon abstract {
     int numshots;
     Property Shot : shot, numshots;
 
+    int magsize;
+    Property MagSize : magsize;
+
     default {
         EEWeapon.NoLaser false;
         EEWeapon.Spread 0,0;
@@ -86,6 +89,12 @@ class EEWeapon : Weapon abstract {
         laseralpha = clamp(linstep(laseredge*2,laseredge,laseraim.length()),0.3,1);
 
     }
+
+    override void AttachToOwner(Actor other) {
+        super.AttachToOwner(other);
+        owner.GiveInventory(AmmoType1.GetClassName(),magsize);
+    }
+
 
     action void Shoot() {
         // Fire the correct number of shots with the correct spread.
