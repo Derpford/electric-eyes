@@ -9,14 +9,15 @@ class EEP90 : EEWeapon replaces Chaingun {
         Weapon.AmmoGive1 0;
         Weapon.AmmoType2 "Clip";
         Weapon.AmmoGive2 20;
-        EEWeapon.MagSize 50;
+        EEWeapon.MagSize 30;
+        EEWeapon.Spread 0.75,0.75;
     }
 
     override Vector2 Kick() {
-        double x1 = -1.5 * linstep(-7,7,laseraim.x);
-        double x2 = 1.5 * linstep(7,-7,laseraim.x);
+        double x1 = -0.5 * linstep(-7,7,laseraim.x);
+        double x2 = 0.5 * linstep(7,-7,laseraim.x);
         double x = frandom(x1,x2);
-        double y1 = -0.75 * linstep(-4,0,laseraim.y);
+        double y1 = -1.75 * linstep(-4,0,laseraim.y);
         double y2 = 0.5 * linstep(-2,-4,laseraim.y);
         double y = frandom(y1,y2);
         return (x, y);
