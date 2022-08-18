@@ -1,7 +1,7 @@
 class EEP90 : EEWeapon replaces Chaingun {
     // A fast-firing weapon with lower kick, but it takes longer for it to recover and it drifts further over time.
     default {
-        Weapon.SlotNumber 2;
+        Weapon.SlotNumber 4;
         Weapon.AmmoType1 "SMGMag";
         Weapon.AmmoUse1 1;
         Weapon.AmmoGive1 0;
