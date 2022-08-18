@@ -1,6 +1,8 @@
 class EEP90 : EEWeapon replaces Chaingun {
     // A fast-firing weapon with lower kick, but it takes longer for it to recover and it drifts further over time.
     default {
+        Inventory.PickupMessage "Got a lightweight PDW.";
+        Tag "PDW";
         Weapon.SlotNumber 4;
         Weapon.AmmoType1 "SMGMag";
         Weapon.AmmoUse1 1;

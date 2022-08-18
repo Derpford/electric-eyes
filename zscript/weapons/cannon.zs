@@ -1,6 +1,8 @@
 class EEAssaultCannon : EEWeapon replaces SuperShotgun {
     // Burns through shells *fast*, but shreds enemies up close. The panic button.
     default {
+        Inventory.PickupMessage "Got a riot-grade Assault Cannon.";
+        Tag "Assault Cannon";
         EEWeapon.SlotNumber 3;
         EEWeapon.Shot "EEPellet", 5;
         EEWeapon.Spread 2,1.5;

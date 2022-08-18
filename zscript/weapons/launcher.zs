@@ -2,6 +2,8 @@ class EEGrenadeLauncher : EEWeapon replaces RocketLauncher {
     // Powerful. Ammunition's scarce, though.
 
     default {
+        Inventory.PickupMessage "Got a sticky grenade launcher.";
+        Tag "Grenade Launcher";
         Weapon.AmmoType "GrenadeMag";
         Weapon.AmmoUse1 1;
         Weapon.AmmoType2 "RocketAmmo";
