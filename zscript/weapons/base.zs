@@ -55,11 +55,20 @@ class EEWeapon : Weapon abstract {
 		}
 	}
 
-    action void Load(String mag, String ammo, int magsize) {
-        while (invoker.owner.CountInv(ammo) > 0 && invoker.owner.CountInv(mag) < magsize) {
+    action void Load(int amount) {
+        String mag = invoker.AmmoType1.GetClassName();
+        String ammo = invoker.AmmoType2.GetClassName();
+        while (invoker.owner.CountInv(ammo) > 0 && invoker.owner.CountInv(mag) < invoker.magsize && amount > 0) {
             invoker.owner.A_TakeInventory(ammo,1);
             invoker.owner.A_GiveInventory(mag,1);
+            amount -= 1;
         }
+    }
+
+    action bool CanLoad() {
+        String mag = invoker.AmmoType1.GetClassName();
+        String ammo = invoker.AmmoType2.GetClassName();
+        return (invoker.owner.CountInv(mag) < invoker.magsize) && (invoker.owner.countinv(ammo) > 0);
     }
 
     double linstep(double low,double high,double x) {
