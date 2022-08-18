@@ -1,4 +1,4 @@
-class EEPistol : EEWeapon {
+class EEPistol : EEWeapon replaces Pistol {
     // Your basic pistol.
     // Handles well.
     int mag;
@@ -22,6 +22,10 @@ class EEPistol : EEWeapon {
     }
 
     states {
+        Spawn:
+            PIST A -1;
+            Stop;
+
         Select:
             PISG A 1 A_Raise(30);
             Loop;
