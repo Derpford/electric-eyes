@@ -50,7 +50,7 @@ class EEP90 : EEWeapon replaces Chaingun {
             }
             FN90 C 12 A_WeaponOffset(0,32,WOF_INTERPOLATE);
             FN90 C 0 {
-                Load("SMGMag","Clip",50);
+                Load(50);
             }
             Goto Ready;
         

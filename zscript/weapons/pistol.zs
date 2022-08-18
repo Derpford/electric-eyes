@@ -24,10 +24,10 @@ class EEPistol : EEWeapon {
 
     states {
         Select:
-            PISG A 1 A_Raise();
+            PISG A 1 A_Raise(30);
             Loop;
         Deselect:
-            PISG A 1 A_Lower();
+            PISG A 1 A_Lower(30);
             Loop;
         
         Ready:
@@ -44,7 +44,7 @@ class EEPistol : EEWeapon {
             PISG C 6 A_StartSound("weapons/sshotl");
             PISG C 6 A_WeaponOffset(0,32,WOF_INTERPOLATE);
             PISG A 3 {
-                Load("PistolMag","Clip",10);
+                Load(10);
                 A_StartSound("weapons/sshotc");
             }
             Goto Ready;
@@ -53,6 +53,7 @@ class EEPistol : EEWeapon {
         Fire:
             PISG B 2 {
                 Shoot();
+                A_GunFlash();
                 A_StartSound("weapons/pistol");
             }
             PISG C 3;
@@ -60,6 +61,10 @@ class EEPistol : EEWeapon {
             PISG A 1;
             PISG A 0 A_Refire();
             Goto Ready;
+
+        Flash:
+            PISF A 3 Bright;
+            Stop;
     }
 }
 
