@@ -3,7 +3,7 @@ class EEAssaultCannon : EEWeapon replaces SuperShotgun {
     default {
         Inventory.PickupMessage "Got a riot-grade Assault Cannon.";
         Tag "Assault Cannon";
-        EEWeapon.SlotNumber 3;
+        Weapon.SlotNumber 3;
         EEWeapon.Shot "EEPellet", 5;
         EEWeapon.Spread 2,1.5;
         EEWeapon.LaserEdge 4; // Wide aim cone, like the Shotgun.
