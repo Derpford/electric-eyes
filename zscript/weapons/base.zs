@@ -41,16 +41,23 @@ class EEWeapon : Weapon abstract {
 		FLineTraceData data;
 		double dist = 512;
         double zoff = 28;
-		owner.LineTrace(owner.angle+aim.x,dist,owner.pitch+aim.y,offsetz:32,data:data);
+		owner.LineTrace(owner.angle+aim.x,dist,owner.pitch+aim.y,offsetz:zoff,data:data);
 		Vector3 spawnpos = owner.pos;
 		int q = 4;
 		spawnpos.z += zoff;
 		for(double i = 0; i<data.distance; i += frandom(1*q,2*q) )
 		{
-			Vector3 newpartpos = owner.pos + (data.HitDir*i);
-			A_SpawnParticle(col,SPF_FULLBRIGHT,1,1+(2*(i/dist)),0,newpartpos.x,newpartpos.y,newpartpos.z+zoff,owner.vel.x,owner.vel.y,owner.vel.z,startalphaf:(alpha * ((dist-i)/dist)));
+			Vector3 newpartpos = (data.HitDir*i);
+			owner.A_SpawnParticle(col,SPF_FULLBRIGHT,1,1+(2*(i/dist)),0,newpartpos.x,newpartpos.y,newpartpos.z+zoff,owner.vel.x,owner.vel.y,owner.vel.z,startalphaf:(alpha * ((dist-i)/dist)));
 		}
 	}
+
+    action void Load(String mag, String ammo, int magsize) {
+        while (invoker.owner.CountInv(ammo) > 0 && invoker.owner.CountInv(mag) < magsize) {
+            invoker.owner.A_TakeInventory(ammo,1);
+            invoker.owner.A_GiveInventory(mag,1);
+        }
+    }
 
     double linstep(double low,double high,double x) {
         return clamp(((x - low) / (high - low)), 0.0, 1.0);
@@ -60,7 +67,8 @@ class EEWeapon : Weapon abstract {
 
     override void Tick() {
         Super.Tick();
-        if (owner.player.readyweapon == self) {
+
+        if (owner && owner.player.readyweapon == self) {
             SpawnLaser(laseraim,laseralpha);
         }
 
