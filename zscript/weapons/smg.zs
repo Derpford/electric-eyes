@@ -6,7 +6,6 @@ class EEP90 : EEWeapon replaces Chaingun {
         Weapon.AmmoUse1 1;
         Weapon.AmmoGive1 0;
         Weapon.AmmoType2 "Clip";
-        Weapon.AmmoUse2 0;
         Weapon.AmmoGive2 20;
         EEWeapon.MagSize 50;
     }
@@ -55,16 +54,24 @@ class EEP90 : EEWeapon replaces Chaingun {
             Goto Ready;
         
         Fire:
+            FN90 A 0 A_JumpIf(!canfire(),"Click");
             FN90 B 2 Bright {
                 Shoot();
                 A_StartSound("weapons/pistol");
             }
+            FN90 A 0 A_JumpIf(!canfire(),"Click");
             FN90 D 2 Bright {
                 Shoot();
                 A_StartSound("weapons/pistol");
             }
             FN90 C 1;
             FN90 C 4 A_Refire();
+            Goto Ready;
+        Click:
+            FN90 C 1 A_StartSound("weapons/sshoto");
+        ClickHold:
+            FN90 A 1;
+            FN90 A 0 A_Refire("ClickHold");
             Goto Ready;
     }
 }

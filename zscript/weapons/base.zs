@@ -37,6 +37,8 @@ class EEWeapon : Weapon abstract {
         EEWeapon.AimFreeze 35;
         EEWeapon.AimVel 0.05, 1.0;
         EEWeapon.LaserEdge 2.0;
+        +WEAPON.AMMO_CHECKBOTH
+        Weapon.AmmoUse2 1;
     }
 
 	void SpawnLaser(Vector2 aim,double alpha,String col = "FF1111")
@@ -69,6 +71,11 @@ class EEWeapon : Weapon abstract {
         String mag = invoker.AmmoType1.GetClassName();
         String ammo = invoker.AmmoType2.GetClassName();
         return (invoker.owner.CountInv(mag) < invoker.magsize) && (invoker.owner.countinv(ammo) > 0);
+    }
+
+    action bool CanFire() {
+        String mag = invoker.AmmoType1.GetClassName();
+        return (invoker.owner.CountInv(mag) >= invoker.AmmoUse1);
     }
 
     double linstep(double low,double high,double x) {

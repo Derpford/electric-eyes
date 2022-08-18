@@ -8,7 +8,6 @@ class EEPistol : EEWeapon {
         Weapon.AmmoUse1 1;
         Weapon.AmmoGive1 0;
         Weapon.AmmoType2 "Clip";
-        Weapon.AmmoUse2 0;
         Weapon.AmmoGive2 10;
         EEWeapon.AimFreeze 18;
         EEWeapon.MagSize 10;
@@ -51,6 +50,7 @@ class EEPistol : EEWeapon {
 
         
         Fire:
+            PISG B 0 A_JumpIf(!canfire(),"Click");
             PISG B 2 {
                 Shoot();
                 A_GunFlash();
@@ -61,6 +61,10 @@ class EEPistol : EEWeapon {
             PISG A 1;
             PISG A 0 A_Refire();
             Goto Ready;
+        
+        Click:
+            PISG B 3 A_StartSound("weapons/sshoto");
+            Goto Hold;
 
         Flash:
             PISF A 3 Bright;
