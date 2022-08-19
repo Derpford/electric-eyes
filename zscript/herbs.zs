@@ -2,7 +2,6 @@ class EEHerbKit : Inventory {
     // This is how you combine herbs into healing.
     default {
         +Inventory.UNDROPPABLE;
-        +Inventory.INVBAR;
         +Inventory.KEEPDEPLETED;
         +Inventory.PERSISTENTPOWER;
         Inventory.Amount 1; // 25 herb units = 1 health block.
