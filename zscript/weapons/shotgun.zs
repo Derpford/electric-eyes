@@ -107,7 +107,7 @@ class EEShotgun : EEWeapon replaces Shotgun {
 
 class EEPellet : EEBullet {
     default {
-        DamageFunction 15;
+        DamageFunction (20);
     }
 }
 
