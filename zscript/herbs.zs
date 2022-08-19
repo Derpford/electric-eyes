@@ -23,7 +23,7 @@ class EEHerbKit : Inventory {
             if (owner.countinv("EEHerbKit") >= 1) {
                 HealthBlockHandler h = HealthBlockHandler(EventHandler.Find("HealthBlockHandler"));
                 if (owner.health < owner.GetMaxHealth()) {
-                    owner.TakeInventory("EEHerbKit",25);
+                    owner.TakeInventory("EEHerbKit",1);
                     int amt = h.ToNextBlock(owner.player);
                     if (amt < h.BlockSize()) {
                         amt += h.BlockSize();
