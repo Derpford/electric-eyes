@@ -20,21 +20,37 @@ class HealthBlockHandler : EventHandler {
         hbover = CVar.GetCVar("hblock_over");
     }
 
+    int BlockSize() {
+        return hbsize.GetInt();
+    }
+
+    int ToNextBlock(PlayerInfo plr) {
+        int hp = plr.mo.health;
+        int block = BlockSize();
+        int delta = block - (hp % block);
+        return delta;
+    }
+
+    int ToPrevBlock(PlayerInfo plr) {
+        int hp = plr.mo.health;
+        int block = BlockSize();
+        int delta = (hp % block);
+        return delta;
+
+    }
+
     override void WorldTick() {
         for (int i = 0; i < MAXPLAYERS; i++) {
             if (playeringame[i]) {
                 timers[i] += 1;
                 if (timers[i] >= hbtick.GetInt()) {
                     PlayerInfo plr = players[i];
-                    int hp = plr.mo.health;
-                    int block = hbsize.GetInt();
-                    if (hp % block != 0) {
+                    int delta = ToPrevBlock(plr);
+                    if (delta != 0) {
                         // We're not sitting on a breakpoint. Heal up!
-                        int delta = block - (hp % block);
-                        // console.printf("Distance to next block: "..delta);
                         int maxhp = plr.mo.SpawnHealth();
                         if (hbover.GetBool()) { maxhp = int.max; }
-                        plr.mo.GiveBody(min(delta, hbamount.GetInt()),maxhp);
+                        plr.mo.GiveBody(min(ToNextBlock(plr), hbamount.GetInt()),maxhp);
                     }
                     timers[i] = min(timers[i],0);
                 }
