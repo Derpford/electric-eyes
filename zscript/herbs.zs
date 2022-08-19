@@ -1,18 +1,26 @@
-class EEHerbKit : Inventory replaces Soulsphere {
+class EEHerbKit : Inventory {
     // This is how you combine herbs into healing.
     default {
         +Inventory.UNDROPPABLE;
         +Inventory.INVBAR;
         +Inventory.KEEPDEPLETED;
-        Inventory.Amount 100; // 25 herb units = 1 health block.
-        Inventory.MaxAmount 300;
+        +Inventory.PERSISTENTPOWER;
+        Inventory.Amount 1; // 25 herb units = 1 health block.
+        Inventory.MaxAmount 5;
         Inventory.Icon "HKITA0"; // ssh, don't tell anyone--i hid a hakita fumo inside the health kit
         scale 0.3;
     }
 
+    override void DoEffect() {
+        if (owner.countinv("EEHerbCharge") >= 25 && owner.countinv("EEHerbKit") < 5) {
+            owner.TakeInventory("EEHerbCharge",25);
+            owner.GiveInventory("EEHerbKit",1);
+        }
+    }
+
     override bool Use(bool pickup) {
         if (!pickup) {
-            if (owner.countinv("EEHerbKit") >= 25) {
+            if (owner.countinv("EEHerbKit") >= 1) {
                 HealthBlockHandler h = HealthBlockHandler(EventHandler.Find("HealthBlockHandler"));
                 if (owner.health < owner.GetMaxHealth()) {
                     owner.TakeInventory("EEHerbKit",25);
@@ -35,6 +43,13 @@ class EEHerbKit : Inventory replaces Soulsphere {
     }
 }
 
+class EEHerbCharge : Inventory {
+    default {
+        Inventory.Amount 1;
+        Inventory.MaxAmount 9000;
+    }
+}
+
 class EEHerb : Inventory abstract {
     int amount;
     Property Amount : amount;
@@ -45,15 +60,28 @@ class EEHerb : Inventory abstract {
     }
 
     override bool Use(bool pickup) {
-        owner.GiveInventory("EEHerbKit",self.amount);
+        owner.GiveInventory("EEHerbCharge",self.amount);
         return true;
+    }
+}
+
+class EEHerbCase : EEHerb replaces SoulSphere {
+    default {
+        Inventory.PickupMessage "Found a medicine case full of herbs.";
+        EEHerb.Amount 50;
+    }
+
+    states {
+        Spawn:
+            HKIT A -1;
+            Stop;
     }
 }
 
 class EEGreenHerb : EEHerb replaces ArmorBonus {
     default {
         Inventory.PickupMessage "Found a sample of green herbs.";
-        EEHerb.amount 2;
+        EEHerb.amount 1;
     }
 
     states {
@@ -68,7 +96,7 @@ class EEGreenHerb2 : EEGreenHerb replaces HealthBonus {}
 class EEBlueHerb : EEHerb replaces Stimpack {
     default {
         Inventory.PickupMessage "Found a sample of blue herbs.";
-        EEHerb.amount 10;
+        EEHerb.amount 5;
     }
 
     states {
@@ -81,7 +109,7 @@ class EEBlueHerb : EEHerb replaces Stimpack {
 class EERedHerb : EEHerb replaces Medikit {
     default {
         Inventory.PickupMessage "Found a sample of red herbs.";
-        EEHerb.amount 20;
+        EEHerb.amount 10;
     }
 
     states {
