@@ -7,6 +7,7 @@ class EEHerbKit : Inventory replaces Soulsphere {
         Inventory.Amount 100; // 25 herb units = 1 health block.
         Inventory.MaxAmount 300;
         Inventory.Icon "HKITA0"; // ssh, don't tell anyone--i hid a hakita fumo inside the health kit
+        scale 0.3;
     }
 
     override bool Use(bool pickup) {
@@ -61,6 +62,8 @@ class EEGreenHerb : EEHerb replaces ArmorBonus {
             Stop;
     }
 }
+
+class EEGreenHerb2 : EEHerb replaces HealthBonus {}
 
 class EEBlueHerb : EEHerb replaces Stimpack {
     default {
