@@ -1,10 +1,10 @@
 class HealthBlockHandler : EventHandler {
     Array<int> timers;
-    transient CVar hbtick; // how many ticks between heals
-    transient CVar hbdelay; // how long after damage to not heal
-    transient CVar hbsize; // the size of a health block
-    transient CVar hbamount; // how much to heal each time
-    transient CVar hbover; // Give health bonuses so that you can overheal?
+    int hbtick; // how many ticks between heals
+    int hbdelay; // how long after damage to not heal
+    int hbsize; // the size of a health block
+    int hbamount; // how much to heal each time
+    bool hbover; // Give health bonuses so that you can overheal?
     
     override void OnRegister() {
         timers.resize(MAXPLAYERS); // one array per player
@@ -13,15 +13,15 @@ class HealthBlockHandler : EventHandler {
 
         // If it has been hblock_delay tics since the last source of damage:
         // Every hblock_tick tics, if our health % hblock_size is not 0, heal either hblock_amount or up to the next hblock_size increment.
-        hbtick = CVar.GetCVar("hblock_tick");
-        hbdelay = CVar.GetCVar("hblock_delay");
-        hbsize = CVar.GetCVar("hblock_size");
-        hbamount = CVar.GetCVar("hblock_amount");
-        hbover = CVar.GetCVar("hblock_over");
+        hbtick = 10;
+        hbdelay = 105;
+        hbsize = 50;
+        hbamount = 1;
+        hbover = false;
     }
 
     int BlockSize() {
-        return hbsize.GetInt();
+        return hbsize;
     }
 
     int ToNextBlock(PlayerInfo plr) {
@@ -43,14 +43,14 @@ class HealthBlockHandler : EventHandler {
         for (int i = 0; i < MAXPLAYERS; i++) {
             if (playeringame[i]) {
                 timers[i] += 1;
-                if (timers[i] >= hbtick.GetInt()) {
+                if (timers[i] >= hbtick) {
                     PlayerInfo plr = players[i];
                     int delta = ToPrevBlock(plr);
                     if (delta != 0) {
                         // We're not sitting on a breakpoint. Heal up!
                         int maxhp = plr.mo.SpawnHealth();
-                        if (hbover.GetBool()) { maxhp = int.max; }
-                        plr.mo.GiveBody(min(ToNextBlock(plr), hbamount.GetInt()),maxhp);
+                        if (hbover) { maxhp = int.max; }
+                        plr.mo.GiveBody(min(ToNextBlock(plr), hbamount),maxhp);
                     }
                     timers[i] = min(timers[i],0);
                 }
@@ -60,7 +60,7 @@ class HealthBlockHandler : EventHandler {
 
     override void WorldThingDamaged(WorldEvent e) {
         if (e.Thing is "PlayerPawn") {
-            timers[e.Thing.PlayerNumber()] = hbdelay.GetInt() * -1;
+            timers[e.Thing.PlayerNumber()] = hbdelay * -1;
             // console.printf("PNum: "..e.Thing.PlayerNumber());
         }
     }
