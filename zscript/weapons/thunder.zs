@@ -60,6 +60,11 @@ class EEThunderbolt : EEWeapon replaces PlasmaRifle {
             }
             PLSG B 15 A_Refire();
             Goto Ready;
+
+        Flash:
+            PLSF AB 3 Bright;
+            Stop;
+
         Click:
             PLSG B 1 A_StartSound("misc/i_pkup");
         ClickHold:
