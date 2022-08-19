@@ -88,7 +88,7 @@ class ThunderZap : EEBullet {
     // A more unpredictable, but potentially more powerful attack.
     default {
         MissileType "ThunderBeam";
-        DamageFunction (Random(1,5) * 10);
+        DamageFunction (Random(1,5) * 20);
     }
 
     states {

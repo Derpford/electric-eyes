@@ -130,7 +130,7 @@ class EEWeapon : Weapon abstract {
 class EEBullet : FastProjectile {
     // The basic bullet type.
     default {
-        DamageFunction (25);
+        DamageFunction (40);
         Speed 80;
         Radius 4;
         Height 4;
