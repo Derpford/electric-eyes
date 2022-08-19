@@ -1,6 +1,7 @@
 class EEArmor : ArmorBonus abstract {
     default {
         Armor.SavePercent 50;
+        Armor.MaxSaveAmount 300;
         -INVENTORY.ALWAYSPICKUP;
         -COUNTITEM;
     }
@@ -9,7 +10,7 @@ class EEArmor : ArmorBonus abstract {
 class EEPlate : EEArmor replaces GreenArmor {
     default {
         Inventory.PickupMessage "Found a nanosteel plate.";
-        Armor.SaveAmount 50;
+        Armor.SaveAmount 75;
     }
 
     states {
@@ -23,7 +24,7 @@ class EEPlate : EEArmor replaces GreenArmor {
 class EEVest : EEArmor replaces BlueArmor {
     default {
         Inventory.PickupMessage "Found a plate carrier.";
-        Armor.SaveAmount 100;
+        Armor.SaveAmount 150;
     }
 
     states {
