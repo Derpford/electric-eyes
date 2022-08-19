@@ -3,6 +3,7 @@ class EEShotgun : EEWeapon replaces Shotgun {
     default {
         Inventory.PickupMessage "Got a shotgun.";
         Tag "Shotgun";
+        Weapon.SlotNumber 3;
         EEWeapon.Spread 1.5,1;
         EEWeapon.Shot "EEPellet", 5;
         EEWeapon.AimFreeze 45; // Slightly longer than the SMG.
