@@ -63,7 +63,7 @@ class EEGreenHerb : EEHerb replaces ArmorBonus {
     }
 }
 
-class EEGreenHerb2 : EEHerb replaces HealthBonus {}
+class EEGreenHerb2 : EEGreenHerb replaces HealthBonus {}
 
 class EEBlueHerb : EEHerb replaces Stimpack {
     default {
