@@ -131,7 +131,7 @@ class EEBullet : FastProjectile {
     // The basic bullet type.
     default {
         DamageFunction (40);
-        Speed 80;
+        Speed 120;
         Radius 4;
         Height 4;
         PROJECTILE;
