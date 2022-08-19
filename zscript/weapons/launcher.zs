@@ -4,6 +4,7 @@ class EEGrenadeLauncher : EEWeapon replaces RocketLauncher {
     default {
         Inventory.PickupMessage "Got a sticky grenade launcher.";
         Tag "Grenade Launcher";
+        Weapon.SlotNumber 5;
         Weapon.AmmoType "GrenadeMag";
         Weapon.AmmoUse1 1;
         Weapon.AmmoType2 "RocketAmmo";
@@ -115,10 +116,11 @@ class EEStickyGrenade : Actor {
         PROJECTILE;
         Speed 70;
         DamageFunction (48);
+        BounceType "Doom";
         -NOGRAVITY;
         -NOTELEPORT;
         +HITTRACER;
-        BounceType "Doom";
+        -ALLOWBOUNCEONACTORS
         BounceFactor 0.5;
     }
 
