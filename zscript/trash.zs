@@ -9,7 +9,7 @@ class TrashTosser : EventHandler {
             "EERedPowder",
             "EERedPowder",
             "EEGoldPowder",
-            "EEGreenHerb",
+            "EEGreenHerb"
         };
         if (random(0,2) == 0) {
             for (int i = random(1,3); i > 0; i--) {
