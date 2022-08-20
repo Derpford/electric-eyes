@@ -5,6 +5,8 @@ class EEGrenadeLauncher : EEWeapon replaces RocketLauncher {
         Inventory.PickupMessage "Got a sticky grenade launcher.";
         Tag "Grenade Launcher";
         Weapon.SlotNumber 5;
+        +Weapon.NOAUTOFIRE;
+        Weapon.SelectionOrder 8000;
         Weapon.AmmoType "GrenadeMag";
         Weapon.AmmoUse1 1;
         Weapon.AmmoType2 "RocketAmmo";

@@ -3,6 +3,7 @@ class EEPunch : Weapon {
 
     default {
         +Weapon.WIMPY_WEAPON;
+        Weapon.SelectionOrder 9000; // Don't use this unless you absolutely have to!
         Weapon.SlotNumber 1;
     }
 

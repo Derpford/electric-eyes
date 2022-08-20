@@ -6,6 +6,7 @@ class EEPistol : EEWeapon replaces Pistol {
         Inventory.PickupMessage "Found a pistol.";
         Tag "Pistol";
         Weapon.SlotNumber 2;
+        Weapon.SelectionOrder 6000;
         Weapon.AmmoType1 "PistolMag";
         Weapon.AmmoUse1 1;
         Weapon.AmmoGive1 0;

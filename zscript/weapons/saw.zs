@@ -2,6 +2,7 @@ class EESaw : Weapon replaces Chainsaw {
     // Groovy.
     default {
         Weapon.SlotNumber 1;
+        Weapon.SelectionOrder 7000;
         Weapon.UpSound "weapons/sawup";
         Weapon.ReadySound "weapons/sawidle";
     }

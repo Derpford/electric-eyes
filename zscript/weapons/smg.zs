@@ -4,6 +4,7 @@ class EEP90 : EEWeapon replaces Chaingun {
         Inventory.PickupMessage "Got a lightweight PDW.";
         Tag "PDW";
         Weapon.SlotNumber 4;
+        Weapon.SelectionOrder 5000;
         Weapon.AmmoType1 "SMGMag";
         Weapon.AmmoUse1 1;
         Weapon.AmmoGive1 0;
