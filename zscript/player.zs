@@ -7,6 +7,7 @@ class EEPlayer : DoomPlayer {
         Player.StartItem "EEHerbKit", 2;
         Player.StartItem "EEPowderKit";
         Player.MaxHealth 150;
+        DamageFactor 1.75; // Fragile!
         Health 150;
     }
 
