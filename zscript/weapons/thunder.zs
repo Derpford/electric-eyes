@@ -15,7 +15,7 @@ class EEThunderbolt : EEWeapon replaces PlasmaRifle {
     }
 
     override Vector2 Kick() {
-        double theta = (owner.CountInv("ThunderBattery") / 50.) * 360.;
+        double theta = 2 * (owner.CountInv("ThunderBattery") / 100.) * 360.;
         double x = cos(theta);
         return (x,0);
     }
