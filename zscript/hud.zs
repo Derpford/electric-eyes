@@ -45,8 +45,11 @@ class EEHud : BaseStatusBar {
             double hpperc = hp / maxhp;
 
             let wpn = CPlayer.ReadyWeapon;
-            int mag = plr.CountInv(wpn.AmmoType1.GetClassName());
-            int ammo = plr.CountInv(wpn.AmmoType2.GetClassName());
+            int mag; int ammo;
+            if (wpn.AmmoType1) {
+                mag = plr.CountInv(wpn.AmmoType1.GetClassName());
+                ammo = plr.CountInv(wpn.AmmoType2.GetClassName());
+            }
             
             double herbcharge = plr.CountInv("EEHerbCharge");
             double healcount = plr.CountInv("EEHerbKit");
