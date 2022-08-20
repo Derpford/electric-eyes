@@ -1,6 +1,8 @@
 class EEPlayer : DoomPlayer {
+    String holster; // What weapon did we just put away for punching?
     default {
         Player.StartItem "EEPistol";
+        Player.StartItem "EEPunch";
         Player.StartItem "Clip", 30;
         Player.StartItem "EEHerbKit", 2;
         Player.MaxHealth 150;

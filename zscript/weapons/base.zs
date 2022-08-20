@@ -125,6 +125,24 @@ class EEWeapon : Weapon abstract {
             }
         }
     }
+
+    action void Punch() {
+        // Switches to the fist.
+        let plr = EEPlayer(invoker.owner);
+        if (plr) {
+            plr.A_SelectWeapon("EEPunch",SWF_SELECTPRIORITY);
+            plr.holster = invoker.GetClassName();
+            console.printf("Swapped from %s to fist",invoker.GetClassName());
+        }
+    }
+
+    states {
+        AltFire:
+            #### # 1 Punch();
+        AltDeselectLoop:
+            #### # 1 A_Lower(35);
+            Loop;
+    }
 }
 
 class EEBullet : FastProjectile {
