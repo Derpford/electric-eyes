@@ -1,5 +1,5 @@
 gameinfo {
-    AddEventHandlers = "HealthBlockHandler"
+    AddEventHandlers = "HealthBlockHandler", "TrashTosser"
     PlayerClasses = "EEPlayer"
     StatusBarClass = "EEHUD"
 }
