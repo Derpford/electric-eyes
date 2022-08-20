@@ -1,9 +1,10 @@
-version "4.6.0"
+version "4.8.0"
 
 #include "zscript/health.zs"
 #include "zscript/herbs.zs"
 #include "zscript/hud.zs"
 #include "zscript/player.zs"
+#include "zscript/powder.zs"
 #include "zscript/armor.zs"
 #include "zscript/weapons/base.zs"
 #include "zscript/weapons/fist.zs"

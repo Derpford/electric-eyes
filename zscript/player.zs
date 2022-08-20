@@ -5,6 +5,7 @@ class EEPlayer : DoomPlayer {
         Player.StartItem "EEPunch";
         Player.StartItem "Clip", 30;
         Player.StartItem "EEHerbKit", 2;
+        Player.StartItem "EEPowderKit";
         Player.MaxHealth 150;
         Health 150;
     }

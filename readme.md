@@ -23,3 +23,9 @@ Herbs are relatively scarce. All of the *real* medical supplies were either used
 
 ## Armor
 Armor protects you from 50% of incoming damage. Bear in mind that while you can carry medical supplies with you, there's no convenient way to carry more armor than you can wear on your back, and no convenient way to repair your armor on the go. That damage resistance makes a big difference, but it *will* eventually be worn away.
+
+## Ammo
+Ammunition is pretty scarce, but you've got a Powder Kit that will automatically produce ammunition for you when you've got enough gunpowder. It can only produce Clips, Shells, or Grenades, though.
+- 2 red +P powders will make a 5 bullet Clip.
+- 2 gold shotgun-grade powders will make three shotgun shells.
+- 3 blue high-explosive powders will make one HE grenade. 
