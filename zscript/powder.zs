@@ -10,7 +10,7 @@ class EEPowderKit : Inventory {
 
     override void DoEffect() {
         Convert("EERedPowder",2,"Clip",5);
-        Convert("EEGoldPowder",2,"Shell",2);
+        Convert("EEGoldPowder",2,"Shell",3);
         Convert("EEBluePowder",3,"RocketAmmo",1);
     }
 }
