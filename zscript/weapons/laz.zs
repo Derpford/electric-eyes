@@ -53,12 +53,18 @@ class EELazarus : EEWeapon replaces BFG9000 {
             Goto Ready;
         
         Fire:
+            BFGG B 12 A_StartSound("weapons/sshoto");
         Hold:
             BFGG A 0 A_JumpIf(!canfire(),"Click");
             BFGG B 1 {
                 Shoot();
+                A_StartSound("weapons/plasmax"); 
                 A_GunFlash();
-                A_StartSound("weapons/plasmaf");
+            }
+            BFGG B 1 Shoot();
+            BFGG B 1 {
+                Shoot();
+                A_StartSound("weapons/plasmax");
             }
             BFGG B 0 A_Refire();
             Goto Ready;
@@ -69,7 +75,7 @@ class EELazarus : EEWeapon replaces BFG9000 {
             Goto Ready;
         
         Flash:
-            BFGF A 3 Bright;
+            BFGF A 1 Bright;
             BFGF B 2 Bright;
             Stop;
     }
@@ -107,7 +113,7 @@ class LazarusBeam : Actor {
             }
             Loop;
         Death:
-            BFE1 ABCDE 3 Bright A_Explode(256,256,0);
+            BFE1 ABCDE 3 Bright A_Explode(24,256,0,fulldamagedistance:256);
             Stop;
     }
 }
