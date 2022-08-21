@@ -33,8 +33,16 @@ class EEPunch : Weapon {
             PUNG BC 3;
             PUNG DDD 1 A_WeaponOffset(12,4,WOF_ADD|WOF_INTERPOLATE);
             PUNG D 0 {
-                A_RadiusThrust(1600,320,RTF_NOTMISSILE,160);
-                A_RadiusThrust(200,320,RTF_NOTMISSILE|RTF_THRUSTZ,160);
+                int rad = 160;
+                BlockThingsIterator it = BlockThingsIterator.Create(invoker.owner,rad);
+                while (it.next()) {
+                    if (it.Thing == invoker.owner || it.Thing.bDONTTHRUST) { continue; }
+                    Vector3 dv = invoker.owner.Vec3To(it.Thing);
+                    dv.z += it.Thing.height / 2.;
+                    it.Thing.vel += dv.unit() * 16;
+                    it.Thing.A_StartSound("player/male/fist");
+                }
+                A_Explode(2,rad,XF_NOTMISSILE|XF_EXPLICITDAMAGETYPE,fulldamagedistance:rad,damagetype:"Roundhouse");
             }
             PUNG DDD 1 A_WeaponOffset(12,4,WOF_ADD|WOF_INTERPOLATE);
         SwapCheck:
