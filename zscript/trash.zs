@@ -78,6 +78,13 @@ class LootSpot : Actor {
             TNT1 A 1 A_SpawnParticle("FFFFFF",SPF_FULLBRIGHT|SPF_RELATIVE,35,6,angle:GetAge()*10,xoff:16,velz:1,startalphaf:2.0,fadestepf:-(1./35.));
             Loop;
         Death:
+            TNT1 A 5 {
+                A_StartSound("player/male/fist",1);
+                A_StartSound("misc/lootopen");
+                for (int i = 0; i < 16; i++) {
+                    A_SpawnParticle("FFFFFF",SPF_FULLBRIGHT|SPF_RELATIVE,15,8,angle:frandom(0,360),velx:4,velz:frandom(1,5));
+                }
+            }
             TNT1 A 1 A_NoBlocking();
             Stop;
     }

@@ -1,0 +1,3 @@
+misc/lootopen "dsgetpow"
+$pitchset misc/lootopen 2.5;
+$limit misc/lootopen 0;
