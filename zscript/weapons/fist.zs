@@ -4,7 +4,6 @@ class EEPunch : Weapon {
     default {
         +Weapon.WIMPY_WEAPON;
         Weapon.SelectionOrder 9000; // Don't use this unless you absolutely have to!
-        Weapon.SlotNumber 1;
     }
 
     override void Tick() {
@@ -36,7 +35,7 @@ class EEPunch : Weapon {
                 int rad = 160;
                 BlockThingsIterator it = BlockThingsIterator.Create(invoker.owner,rad);
                 while (it.next()) {
-                    if (it.Thing == invoker.owner || it.Thing.bDONTTHRUST) { continue; }
+                    if (it.Thing == invoker.owner || it.Thing.bDONTTHRUST || !it.Thing.bSHOOTABLE) { continue; }
                     Vector3 dv = invoker.owner.Vec3To(it.Thing);
                     dv.z += it.Thing.height / 2.;
                     it.Thing.vel += dv.unit() * 16;
@@ -48,8 +47,9 @@ class EEPunch : Weapon {
         SwapCheck:
             PUNG D 0 {
                 let plr = EEPlayer(invoker.owner);
-                if (plr) {
+                if (plr && plr.holster && plr.holster != "") {
                     A_SelectWeapon(plr.holster);
+                    plr.holster = "";
                 }
             }
             Goto ManualReady;
