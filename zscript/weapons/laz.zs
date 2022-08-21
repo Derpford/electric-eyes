@@ -4,6 +4,7 @@ class EELazarus : EEWeapon replaces BFG9000 {
         Inventory.PickupMessage "The Lazarus Device.";
         Tag "Lazarus Device";
         Weapon.SlotNumber 5;
+        Weapon.SlotPriority 0.5;
         Weapon.SelectionOrder 2000;
         Weapon.AmmoType1 "LazBattery";
         Weapon.AmmoUse1 1;

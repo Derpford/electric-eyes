@@ -5,6 +5,7 @@ class EEThunderbolt : EEWeapon replaces PlasmaRifle {
         Inventory.PickupMessage "Got a...'Thunderbolt'?";
         Tag "Thunderbolt";
         Weapon.SlotNumber 4;
+        Weapon.SlotPriority 0.5;
         EEWeapon.Shot "ThunderZap", 3;
         EEWeapon.Spread 0,3;
         EEWeapon.MagSize 100;
