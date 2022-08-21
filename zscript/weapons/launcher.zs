@@ -116,6 +116,8 @@ class EEStickyGrenade : Actor {
     default {
         PROJECTILE;
         Speed 70;
+        Radius 4;
+        Height 8;
         DamageFunction (48);
         BounceType "Doom";
         -NOGRAVITY;
