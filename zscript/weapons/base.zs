@@ -37,8 +37,8 @@ class EEWeapon : Weapon abstract {
         EEWeapon.AimFreeze 35;
         EEWeapon.AimVel 0.05, 1.0;
         EEWeapon.LaserEdge 2.0;
-        +WEAPON.AMMO_CHECKBOTH
-        Weapon.AmmoUse2 1;
+        +WEAPON.AMMO_CHECKBOTH;
+        Weapon.MinSelectionAmmo2 1;
     }
 
 	void SpawnLaser(Vector2 aim,double alpha,String col = "FF1111")

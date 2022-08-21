@@ -10,7 +10,6 @@ class EEGrenadeLauncher : EEWeapon replaces RocketLauncher {
         Weapon.AmmoType "GrenadeMag";
         Weapon.AmmoUse1 1;
         Weapon.AmmoType2 "RocketAmmo";
-        Weapon.AmmoUse2 0;
         Weapon.AmmoGive2 1;
         EEWeapon.MagSize 3;
         EEWeapon.Shot "EEStickyGrenade",1;
