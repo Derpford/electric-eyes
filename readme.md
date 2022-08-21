@@ -4,6 +4,11 @@ There are things hiding in the dark. Vicious, deadly. You're going to be worn do
 
 You can feel them watching you, through circuit and sinew, with electric eyes.
 
+## What does this mod do?
+*Electric Eyes* is a survival-horror-themed mod, inspired by Resident Evil (of course) as well as by [Nightmare Logic](https://forum.zdoom.org/viewtopic.php?f=43&t=70984).
+
+This mod replaces weapons, items, and the player. I recommend playing with a relatively deadly monster mod--this mod was tested with [Xenomorph Madness](https://forum.zdoom.org/viewtopic.php?f=43&t=72709).
+
 ## The Guns
 Most of the guns have a *laser sight* that accurately represents where outgoing shots are going to go. You can either wait for the laser to drift back to neutral before firing another shot, or use it to account for recoil.
 
