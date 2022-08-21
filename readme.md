@@ -29,3 +29,6 @@ Ammunition is pretty scarce, but you've got a Powder Kit that will automatically
 - 2 red +P powders will make a 5 bullet Clip.
 - 2 gold shotgun-grade powders will make three shotgun shells.
 - 3 blue high-explosive powders will make one HE grenade. 
+
+## Looting
+If you see a white spiral, that indicates a Loot Spot. Enemies will sometimes drop Loot Spots on death, and some decorations will also have Loot Spots. Using your *fists* near a Loot Spot will open it, potentially dropping some useful items.
