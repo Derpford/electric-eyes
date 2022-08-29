@@ -42,7 +42,11 @@ class EEPunch : Weapon {
                     it.Thing.vel += dv.unit() * 16;
                     it.Thing.A_StartSound("player/male/fist");
                     if (it.Thing.bISMONSTER || it.Thing is "LootSpot") {
-                        it.Thing.DamageMobj(invoker.owner,invoker.owner,10 + random(0,invoker.owner.CountInv("PowerSerum")),"Roundhouse");
+                        int dmg = 10 + random(0,invoker.owner.CountInv("PowerSerum"));
+                        if (it.Thing.InStateSequence(it.Thing.curstate, it.Thing.ResolveState("Pain"))) {
+                            dmg *= 3;
+                        }
+                        it.Thing.DamageMobj(invoker.owner,invoker.owner,dmg,"Roundhouse");
                     }
                 }
                 // A_Explode(10 + random(0,invoker.owner.CountInv("PowerSerum")),rad,XF_NOTMISSILE|XF_EXPLICITDAMAGETYPE,fulldamagedistance:rad,damagetype:"Roundhouse");
