@@ -41,7 +41,7 @@ class EEPunch : Weapon {
                     it.Thing.vel += dv.unit() * 16;
                     it.Thing.A_StartSound("player/male/fist");
                 }
-                A_Explode(2,rad,XF_NOTMISSILE|XF_EXPLICITDAMAGETYPE,fulldamagedistance:rad,damagetype:"Roundhouse");
+                A_Explode(10 + random(0,invoker.owner.CountInv("PowerSerum")),rad,XF_NOTMISSILE|XF_EXPLICITDAMAGETYPE,fulldamagedistance:rad,damagetype:"Roundhouse");
             }
             PUNG DDD 1 A_WeaponOffset(12,4,WOF_ADD|WOF_INTERPOLATE);
         SwapCheck:
@@ -60,5 +60,25 @@ class EEPunch : Weapon {
         ManualReady:
             PUNG A 1 A_WeaponReady();
             Loop;
+    }
+}
+
+class PowerSerum : Inventory replaces Berserk {
+    // Boosts your fist's damage cap.
+    default {
+        Inventory.PickupMessage "Injected some Power Serum.";
+        Inventory.Amount 1;
+        Inventory.MaxAmount Int.Max; // If you can find that many berserk packs...good for you, I guess?
+    }
+
+    override bool Use(bool pickup) {
+        owner.GiveBody(50,owner.GetMaxHealth(true)+50);
+        return super.Use(pickup);
+    }
+
+    states {
+        Spawn:
+            SYRN A -1;
+            Stop;
     }
 }
