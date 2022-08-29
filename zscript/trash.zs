@@ -57,7 +57,6 @@ class LootSpot : Actor {
         DropItem "EEGreenHerb", 128;
         DropItem "EEGreenHerb", 64;
         DropItem "EEBlueHerb", 24;
-        DropItem "EERedHerb", 16;
         DropItem "EERedPowder", 128;
         DropItem "EERedPowder", 32;
         DropItem "EEGoldPowder", 64;
