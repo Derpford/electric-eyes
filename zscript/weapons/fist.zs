@@ -37,11 +37,15 @@ class EEPunch : Weapon {
                 while (it.next()) {
                     if (it.Thing == invoker.owner || it.Thing.bDONTTHRUST || !it.Thing.bSHOOTABLE) { continue; }
                     Vector3 dv = invoker.owner.Vec3To(it.Thing);
+                    if (dv.length() > rad) { continue; }
                     dv.z += it.Thing.height / 2.;
                     it.Thing.vel += dv.unit() * 16;
                     it.Thing.A_StartSound("player/male/fist");
+                    if (it.Thing.bISMONSTER || it.Thing is "LootSpot") {
+                        it.Thing.DamageMobj(invoker.owner,invoker.owner,10 + random(0,invoker.owner.CountInv("PowerSerum")),"Roundhouse");
+                    }
                 }
-                A_Explode(10 + random(0,invoker.owner.CountInv("PowerSerum")),rad,XF_NOTMISSILE|XF_EXPLICITDAMAGETYPE,fulldamagedistance:rad,damagetype:"Roundhouse");
+                // A_Explode(10 + random(0,invoker.owner.CountInv("PowerSerum")),rad,XF_NOTMISSILE|XF_EXPLICITDAMAGETYPE,fulldamagedistance:rad,damagetype:"Roundhouse");
             }
             PUNG DDD 1 A_WeaponOffset(12,4,WOF_ADD|WOF_INTERPOLATE);
         SwapCheck:
