@@ -103,7 +103,9 @@ class EEWeapon : Weapon abstract {
 
         if (GetAge() % shaketics == 0) {
             double shakeang = frandom(0,360);
-            aimvel += AngleToVector(shakeang,aimshake);
+            double mult = 1.;
+            if (owner) { mult += (owner.vel.length() / 10.); }
+            aimvel += AngleToVector(shakeang,(aimshake * mult));
         }
 
         if (aimfreeze > 0) {
