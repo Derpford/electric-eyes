@@ -14,6 +14,7 @@ class EELazarus : EEWeapon replaces BFG9000 {
         EEWeapon.AimVel 0.01, 1.0;
         EEWeapon.Shot "LazarusBeam",1;
         EEWeapon.MagSize 105;
+        EEWeapon.AimShake 0.0, 1;
     }
 
     override Vector2 Kick() {
