@@ -21,14 +21,24 @@ class EEHerbKit : Inventory {
         if (!pickup) {
             if (owner.countinv("EEHerbKit") >= 1) {
                 HealthBlockHandler h = HealthBlockHandler(EventHandler.Find("HealthBlockHandler"));
-                if (owner.health < owner.GetMaxHealth()) {
+                if (owner.health < owner.GetMaxHealth(true)) {
                     owner.TakeInventory("EEHerbKit",1);
                     int amt = h.ToNextBlock(owner.player);
-                    if (amt < h.BlockSize()) {
-                        amt += h.BlockSize();
+                    if (amt < h.BlockSize(owner.player)) {
+                        amt += h.BlockSize(owner.player);
                     }
                     console.printf("Healed "..amt);
+                    owner.A_StartSound("misc/i_pkup");
+                    owner.A_SetBlend("AAAAFF",0.5,10);
                     owner.GiveBody(amt);
+                } else {
+                    // Give the player a slightly bigger healthbar.
+                    owner.stamina += 15;
+                    console.printf("Boosted max health.");
+                    owner.A_SetBlend("FFFFFF",0.5,10);
+                    owner.A_StartSound("misc/p_pkup");
+                    owner.GiveBody(15);
+                    owner.TakeInventory("EEHerbKit",1);
                 }
             }
         }
@@ -67,7 +77,7 @@ class EEHerb : Inventory abstract {
 class EEHerbCase : EEHerb replaces SoulSphere {
     default {
         Inventory.PickupMessage "Found a medicine case full of herbs.";
-        EEHerb.Amount 50;
+        EEHerb.Amount 25;
     }
 
     states {

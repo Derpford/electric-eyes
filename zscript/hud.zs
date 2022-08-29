@@ -38,7 +38,7 @@ class EEHud : BaseStatusBar {
 
         if (plr) {
             double hp = plr.health;
-            double maxhp = plr.GetMaxHealth();
+            double maxhp = plr.GetMaxHealth(true);
             double arm = GetAmount("BasicArmor");
             double maxarm = 300;
 
@@ -56,8 +56,8 @@ class EEHud : BaseStatusBar {
 
             // Draw health.
             String hbar = "HBARB0";
-            if (hp <= 100) { hbar = "HBARC0"; }
-            if (hp <= 50) { hbar = "HBARD0"; }
+            if (hp <= maxhp * (2. / 3.)) { hbar = "HBARC0"; }
+            if (hp <= maxhp * (1. / 3.)) { hbar = "HBARD0"; }
             DrawBar(hbar,"HBARE0",hp,maxhp,(80,-40),0,0,lbarflags,FlickerAlpha(hpperc,0));
 
             // And armor.

@@ -6,9 +6,9 @@ class EEPlayer : DoomPlayer {
         Player.StartItem "Clip", 30;
         Player.StartItem "EEHerbKit", 2;
         Player.StartItem "EEPowderKit";
-        Player.MaxHealth 150;
-        DamageFactor 1.75; // Fragile!
-        Health 150;
+        Player.MaxHealth 75;
+        // DamageFactor 1.75; // Fragile!
+        Health 75;
     }
 
     override void Tick() {

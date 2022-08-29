@@ -2,7 +2,6 @@ class HealthBlockHandler : EventHandler {
     Array<int> timers;
     int hbtick; // how many ticks between heals
     int hbdelay; // how long after damage to not heal
-    int hbsize; // the size of a health block
     int hbamount; // how much to heal each time
     bool hbover; // Give health bonuses so that you can overheal?
     
@@ -13,27 +12,26 @@ class HealthBlockHandler : EventHandler {
 
         // If it has been hblock_delay tics since the last source of damage:
         // Every hblock_tick tics, if our health % hblock_size is not 0, heal either hblock_amount or up to the next hblock_size increment.
-        hbtick = 10;
+        hbtick = 35;
         hbdelay = 105;
-        hbsize = 50;
-        hbamount = 1;
+        hbamount = 5;
         hbover = false;
     }
 
-    int BlockSize() {
-        return hbsize;
+    int BlockSize(PlayerInfo plr) {
+        return plr.mo.GetMaxHealth(true) / 3;
     }
 
     int ToNextBlock(PlayerInfo plr) {
         int hp = plr.mo.health;
-        int block = BlockSize();
+        int block = BlockSize(plr);
         int delta = block - (hp % block);
         return delta;
     }
 
     int ToPrevBlock(PlayerInfo plr) {
         int hp = plr.mo.health;
-        int block = BlockSize();
+        int block = BlockSize(plr);
         int delta = (hp % block);
         return delta;
 
@@ -48,7 +46,7 @@ class HealthBlockHandler : EventHandler {
                     int delta = ToPrevBlock(plr);
                     if (delta != 0) {
                         // We're not sitting on a breakpoint. Heal up!
-                        int maxhp = plr.mo.SpawnHealth();
+                        int maxhp = plr.mo.GetMaxHealth(true);
                         if (hbover) { maxhp = int.max; }
                         plr.mo.GiveBody(min(ToNextBlock(plr), hbamount),maxhp);
                     }
