@@ -13,12 +13,35 @@ class EEPowderKit : Inventory {
         Convert("EEGoldPowder",2,"Shell",3);
         Convert("EEBluePowder",3,"RocketAmmo",1);
     }
+
 }
 class EEGunpowder : Inventory Abstract {
     default {
         Inventory.Amount 1;
         Inventory.MaxAmount 20;
         Scale 0.2;
+    }
+
+    override void PostBeginPlay() {
+        // If this item was dropped, there's a 50% chance to remove it and a 25% chance to shuffle it.
+        if (bDROPPED) {
+            double c = frandom(0,1);
+            if (c > 0.5) {
+                GoAwayAndDie();
+            } else if (c < 0.25) {
+                static const String drops[] = {
+                    "EERedPowder",
+                    "EEBluePowder",
+                    "EEGoldPowder"
+                };
+                string t = drops[random(0,2)];
+                let it = Spawn(t,pos);
+                if (it) {
+                    it.vel = vel;
+                    GoAwayAndDie();
+                }
+            }
+        }
     }
 }
 
