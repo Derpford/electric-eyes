@@ -10,7 +10,7 @@ You can feel them watching you, through circuit and sinew, with electric eyes.
 This mod replaces weapons, items, and the player. I recommend playing with a relatively deadly monster mod--this mod was tested with [Xenomorph Madness](https://forum.zdoom.org/viewtopic.php?f=43&t=72709).
 
 ## The Guns
-Most of the guns have a *laser sight* that accurately represents where outgoing shots are going to go. You can either wait for the laser to drift back to neutral before firing another shot, or use it to account for recoil.
+Most of the guns have a *laser sight* that accurately represents where outgoing shots are going to go. You can either wait for the laser to drift back to neutral before firing another shot, or use it to account for recoil. The laser sight will shake slightly for most weapons, shaking more if you're on the move.
 
 1. Your *fists* are fairly powerful, now that you've learned to really plant your feet. You can use *altfire* with any of the other weapons (except the chainsaw) to quick-swap to your fists and throw a roundhouse that knocks enemies back. However, this attack doesn't do damage on its own. Meanwhile, the *Chainsaw* chews through smaller enemies with ease, though you can't quickswap to the fist while using it.
 2. Your trusty *Pistol* hits hard and is highly accurate, with recoil that's relatively easy to manage. However, the 10-round mag limits it. Semi-auto.
@@ -23,6 +23,8 @@ Most of the guns have a *laser sight* that accurately represents where outgoing 
 
 ## Healing
 You're carrying an *Herbal Medicine Kit*, designed to take samples of plantlife, identify and separate useful compounds from them, and automatically produce first aid supplies on-the-go. Press the USER1 key to use a 'charge', healing you up to the next 'block' of your health.
+
+If you're full on health, you can press USER1 and use a charge of your Herbal Medicine Kit to boost your health slightly. This adds up over time.
 
 Herbs are relatively scarce. All of the *real* medical supplies were either used up or destroyed during first contact. However, you also recover from damage over time--find a safe place to rest, and you'll start recovering. You can only recover up to the end of the current 'block' of your health, though--you'll need to use your Herbal Medicine Kit to recover past that.
 
