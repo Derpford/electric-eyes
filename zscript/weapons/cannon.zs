@@ -13,6 +13,7 @@ class EEAssaultCannon : EEWeapon replaces SuperShotgun {
         Weapon.AmmoType2 "Shell";
         Weapon.AmmoGive2 4;
         EEWeapon.MagSize 6;
+        EEWeapon.AimShake 0.2, 3;
     }
 
     override Vector2 Kick() {

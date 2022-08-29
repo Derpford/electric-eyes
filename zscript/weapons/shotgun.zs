@@ -14,6 +14,7 @@ class EEShotgun : EEWeapon replaces Shotgun {
         Weapon.AmmoType2 "Shell";
         Weapon.AmmoGive2 3;
         EEWeapon.MagSize 5;
+        EEWeapon.AimShake 0.2, 5;
     }
 
     override Vector2 Kick() {

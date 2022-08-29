@@ -13,6 +13,7 @@ class EEThunderbolt : EEWeapon replaces PlasmaRifle {
         Weapon.AmmoUse1 2;
         Weapon.AmmoType2 "Cell";
         Weapon.AmmoGive2 30;
+        EEWeapon.AimShake 0.0, 1;
     }
 
     override Vector2 Kick() {

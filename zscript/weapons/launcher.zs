@@ -13,6 +13,7 @@ class EEGrenadeLauncher : EEWeapon replaces RocketLauncher {
         Weapon.AmmoGive2 1;
         EEWeapon.MagSize 3;
         EEWeapon.Shot "EEStickyGrenade",1;
+        EEWeapon.AimShake 0.2, 5;
     }
 
     override Vector2 Kick() {

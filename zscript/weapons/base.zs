@@ -13,6 +13,9 @@ class EEWeapon : Weapon abstract {
     double aimmaxspd;
     double aimaccel;
     Property AimVel : aimaccel,aimmaxspd;
+    double aimshake;
+    int shaketics;
+    Property AimShake: aimshake, shaketics;
     // In addition, firing freezes the 'gravity' of the pointer for a bit.
     int aimfreeze;
     int aimfreezemax;
@@ -36,6 +39,7 @@ class EEWeapon : Weapon abstract {
         EEWeapon.Shot "EEBullet",1;
         EEWeapon.AimFreeze 35;
         EEWeapon.AimVel 0.05, 1.0;
+        EEWeapon.AimShake 0.1, 3;
         EEWeapon.LaserEdge 2.0;
         +WEAPON.AMMO_CHECKBOTH;
         Weapon.MinSelectionAmmo2 1;
@@ -50,11 +54,14 @@ class EEWeapon : Weapon abstract {
 		Vector3 spawnpos = owner.pos;
 		int q = 4;
 		spawnpos.z += zoff;
-		for(double i = 0; i<data.distance; i += frandom(1*q,2*q) )
+		for(double i = 0; i<data.distance; i += frandom(1,2) * q )
 		{
 			Vector3 newpartpos = (data.HitDir*i);
-			owner.A_SpawnParticle(col,SPF_FULLBRIGHT,1,1+(2*(i/dist)),0,newpartpos.x,newpartpos.y,newpartpos.z+zoff,owner.vel.x,owner.vel.y,owner.vel.z,startalphaf:(alpha * ((dist-i)/dist)));
+            double fa = 0.5 * alpha * ((dist-i)/dist);
+			owner.A_SpawnParticle(col,SPF_FULLBRIGHT,1,1+(2*(i/dist)),0,newpartpos.x,newpartpos.y,newpartpos.z+zoff,owner.vel.x,owner.vel.y,owner.vel.z,startalphaf:fa);
 		}
+        Vector3 hitp = (data.HitDir * (data.Distance - 1));
+        owner.A_SpawnParticle(col,SPF_FULLBRIGHT,1,4,0,hitp.x,hitp.y,hitp.z+zoff,owner.vel.x,owner.vel.y,owner.vel.z,startalphaf:alpha);
 	}
 
     action void Load(int amount) {
@@ -93,6 +100,11 @@ class EEWeapon : Weapon abstract {
 
         laseraim += aimvel;
         aimvel = aimvel * (1.0 - cos(aimvel.length() / aimmaxspd));
+
+        if (GetAge() % shaketics == 0) {
+            double shakeang = frandom(0,360);
+            aimvel += AngleToVector(shakeang,aimshake);
+        }
 
         if (aimfreeze > 0) {
             aimfreeze -= 1;

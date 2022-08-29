@@ -11,7 +11,8 @@ class EEP90 : EEWeapon replaces Chaingun {
         Weapon.AmmoType2 "Clip";
         Weapon.AmmoGive2 20;
         EEWeapon.MagSize 30;
-        EEWeapon.Spread 0.75,0.75;
+        EEWeapon.Spread 0.25,0.25;
+        EEWeapon.AimShake 0.2, 5;
     }
 
     override Vector2 Kick() {
