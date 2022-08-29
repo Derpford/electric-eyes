@@ -48,27 +48,50 @@ class TrashTosser : EventHandler {
 }
 
 class LootSpot : Actor {
+    mixin Randoms;
     // Drops some random stuff.
     default {
         +SHOOTABLE;
         Radius 1;
         Height 1;
         Health 1;
-        DropItem "EEGreenHerb", 128;
-        DropItem "EEGreenHerb", 64;
-        DropItem "EEBlueHerb", 24;
-        DropItem "EERedPowder", 128;
-        DropItem "EERedPowder", 32;
-        DropItem "EEGoldPowder", 64;
-        DropItem "EEBluePowder", 16;
+        // DropItem "EEGreenHerb", 128;
+        // DropItem "EEGreenHerb", 64;
+        // DropItem "EEBlueHerb", 24;
+        // DropItem "EERedPowder", 128;
+        // DropItem "EERedPowder", 32;
+        // DropItem "EEGoldPowder", 64;
+        // DropItem "EEBluePowder", 16;
     }
 
     override int DamageMobj(Actor inf, Actor src, int dmg, Name type, int flags, double ang) {
         // Can only be broken by damage from your fists.
         if (type == "Roundhouse") {
+            target = src;
             return super.DamageMobj(inf,src,dmg,type,flags,ang);
         } else {
             return 0;
+        }
+    }
+
+    action void DropStuff() {
+        Dictionary loot = Dictionary.FromString(
+            "{
+                \"EEGreenHerb\":\"0.8\",
+                \"EEBlueHerb\":\"0.2\",
+                \"EERedPowder\":\"1.0\",
+                \"EEGoldPowder\":\"0.3\",
+                \"EEBluePowder\":\"0.2\"
+            }");
+        int i = random(0,3);
+        while (i > 0) {
+            string result = invoker.WRDict(loot);
+            Vector3 offs = (frandom(-i,i),frandom(-i,i),0);
+            let it = invoker.Spawn(result,invoker.pos);
+            if (it && target) {
+                it.VelIntercept(target,10);
+            }
+            i--;
         }
     }
 
@@ -84,7 +107,7 @@ class LootSpot : Actor {
                     A_SpawnParticle("FFFFFF",SPF_FULLBRIGHT|SPF_RELATIVE,15,8,angle:frandom(0,360),velx:4,velz:frandom(1,5));
                 }
             }
-            TNT1 A 1 A_NoBlocking();
+            TNT1 A 1 DropStuff();
             Stop;
     }
 }
