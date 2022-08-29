@@ -89,7 +89,7 @@ class LootSpot : Actor {
             Vector3 offs = (frandom(-i,i),frandom(-i,i),0);
             let it = invoker.Spawn(result,invoker.pos);
             if (it && target) {
-                it.VelIntercept(target,10);
+                it.vel = it.Vec3To(target).unit() * 10;
             }
             i--;
         }
