@@ -75,9 +75,11 @@ class PowerSerum : Inventory replaces Berserk {
         Inventory.MaxAmount Int.Max; // If you can find that many berserk packs...good for you, I guess?
     }
 
-    override bool Use(bool pickup) {
-        owner.GiveBody(50,owner.GetMaxHealth(true)+50);
-        return super.Use(pickup);
+    override void DoPickupSpecial(Actor toucher) {
+        if (toucher) {
+            toucher.GiveBody(50,toucher.GetMaxHealth(true)+50);
+        }
+        super.DoPickupSpecial(toucher);
     }
 
     states {
