@@ -35,4 +35,8 @@ mixin class Randoms {
 
         return names[res];
     }
+
+    string Pick(Array<String> items) {
+        return items[random(0,items.size())];
+    }
 }
