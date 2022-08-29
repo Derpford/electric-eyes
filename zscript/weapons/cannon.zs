@@ -17,11 +17,11 @@ class EEAssaultCannon : EEWeapon replaces SuperShotgun {
     }
 
     override Vector2 Kick() {
-        double x1 = -2.5 * linstep(-7,7,laseraim.x);
-        double x2 = 2.5 * linstep(7,-7,laseraim.x);
+        double x1 = -3.5 * linstep(-7,7,laseraim.x);
+        double x2 = 3.5 * linstep(7,-7,laseraim.x);
         double x = frandom(x1,x2);
-        double y1 = -6 * linstep(-10,-4,laseraim.y);
-        double y2 = 2 * linstep(-4,-8,laseraim.y);
+        double y1 = -2 * linstep(-6,-2,laseraim.y);
+        double y2 = 1 * linstep(-4,-8,laseraim.y);
         double y = frandom(y1,y2);
         return (x, y);
     }
