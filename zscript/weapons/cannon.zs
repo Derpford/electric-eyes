@@ -12,7 +12,7 @@ class EEAssaultCannon : EEWeapon replaces SuperShotgun {
         Weapon.AmmoUse1 1;
         Weapon.AmmoType2 "Shell";
         Weapon.AmmoGive2 4;
-        EEWeapon.MagSize 6;
+        EEWeapon.MagSize 15;
         EEWeapon.AimShake 0.2, 3;
     }
 
@@ -58,7 +58,7 @@ class EEAssaultCannon : EEWeapon replaces SuperShotgun {
             CHGG B 4 {
                 A_WeaponOffset(0,48,WOF_INTERPOLATE);
                 A_StartSound("weapons/sshotl");
-                Load(1);
+                Load(3);
             }
             CHGG B 14 {
                 A_WeaponOffset(0,32,WOF_INTERPOLATE);
@@ -87,8 +87,8 @@ class EEAssaultCannon : EEWeapon replaces SuperShotgun {
                 A_StartSound("weapons/sshotf");
                 A_WeaponOffset(0,40,WOF_INTERPOLATE);
             }
-            CHGG B 4 A_WeaponOffset(0,36,WOF_INTERPOLATE);
-            CHGG A 3 A_WeaponOffset(0,32,WOF_INTERPOLATE);
+            CHGG B 2 A_WeaponOffset(0,36,WOF_INTERPOLATE);
+            CHGG A 2 A_WeaponOffset(0,32,WOF_INTERPOLATE);
             CHGG A 5 A_Refire();
             Goto Ready;
 
@@ -97,7 +97,7 @@ class EEAssaultCannon : EEWeapon replaces SuperShotgun {
             Stop;
 
         Click:
-            CHGG A 1 A_StartSound("weapons/sshoto");
+            CHGG A 1 A_StartSound("weapons/sshoto",0);
         ClickHold:
             CHGG A 1;
             CHGG A 0 A_Refire("ClickHold");
@@ -108,8 +108,8 @@ class EEAssaultCannon : EEWeapon replaces SuperShotgun {
 class CannonMag : Ammo {
     default {
         Inventory.Amount 1;
-        Inventory.MaxAmount 6;
+        Inventory.MaxAmount 15;
         Ammo.BackpackAmount 0;
-        Ammo.BackpackMaxAmount 6;
+        Ammo.BackpackMaxAmount 15;
     }
 }
