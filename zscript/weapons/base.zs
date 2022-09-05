@@ -167,8 +167,16 @@ class EEBullet : FastProjectile {
         Radius 4;
         Height 4;
         PROJECTILE;
+        +HITTRACER;
         MissileType "EEBulletTrail";
+        Decal "BulletChip";
         MissileHeight 8;
+    }
+
+    action void SpawnBlood() {
+        if (!tracer) {return;}
+        Vector3 bv = -1 * (Vec3To(tracer).unit() + (frandom(-1,1), frandom(-1,1), frandom(-1,1)));
+        A_SpawnItemEX("Blood",xvel:bv.x,yvel:bv.y,zvel:bv.z);
     }
 
     states {
@@ -176,9 +184,13 @@ class EEBullet : FastProjectile {
             TNT1 A 1;
             Loop;
         Death:
+        Crash:
             PUFF ABCD 3 Bright;
             Stop;
-    }
+        XDeath:
+            BLUD CBA 2 SpawnBlood();
+            Stop;
+        }
 }
 
 class EEBulletTrail : Actor {

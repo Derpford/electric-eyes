@@ -95,7 +95,11 @@ class ThunderZap : EEBullet {
 
     states {
         Death:
+        Crash:
             PLSE ABCDE 5 Bright;
+            Stop;
+        XDeath:
+            PLSE ABCDE 5 Bright SpawnBlood();
             Stop;
     }
 }
