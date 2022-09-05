@@ -146,7 +146,6 @@ class EEWeapon : Weapon abstract {
         if (plr) {
             plr.A_SelectWeapon("EEPunch",SWF_SELECTPRIORITY);
             plr.holster = invoker.GetClassName();
-            console.printf("Swapped from %s to fist",invoker.GetClassName());
         }
     }
 
